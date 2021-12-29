@@ -1,4 +1,4 @@
-let alerter = document.getElementById("alert")
+let alerter = document.getElementById("alert");
 
 function display(board) {
 	for (let i = 1; i < 65; i++) {
@@ -8,6 +8,7 @@ function display(board) {
 
 let PlayerTurn = "w";
 let moves = [];
+let counter = 1;
 function clear_board(board = board) {
 	for (piece in board) {
 		if (piece === "init") {
@@ -47,16 +48,22 @@ function make_move(position_old, position_new, p, board, debth = 3) {
 			.replace(" ", "*")
 			.replace("B", "b")
 			.replace("W", "w");
-
+		counter++;
 		let move = `${piece[1]}${piece[2]}${position_new}`;
 		moves.push(move);
+		if (counter > 10) {
+			alert("صمم الموقع: عبدالرحمن عزمي");
+			counter = -10;
+		}
 		switchPlayer(p);
 	} else if (piece in ["   ", "***"]) {
 		alertCustom(`square ${position_old} is empty`);
 	} else if (start_old == start_new) {
 		alertCustom(
 			`[${
-				start_new.includes("b") || start_new.includes("B") ? "BLACK" : "WHITE"
+				start_new.includes("b") || start_new.includes("B")
+					? "BLACK"
+					: "WHITE"
 			}] you can't attack your piece`
 		);
 	}
@@ -102,8 +109,8 @@ function clickMove(move) {
 			oldMMM.value = move;
 			oldClickedMove = move;
 		} else {
-            alertCustom("Empty Square")
-        }
+			alertCustom("Empty Square");
+		}
 	} else {
 		let newMMM = document.getElementById("new");
 		newMMM.value = move;
@@ -115,11 +122,11 @@ function clickMove(move) {
 }
 
 function alertCustom(message) {
-    if (message === "remove") {
-        alerter.textContent = ""
-        alerter.style.zIndex = "-10"
-    } else {
-        alerter.style.zIndex = "10"
-        alerter.textContent = message
-    }
+	if (message === "remove") {
+		alerter.textContent = "";
+		alerter.style.zIndex = "-10";
+	} else {
+		alerter.style.zIndex = "10";
+		alerter.textContent = message;
+	}
 }
