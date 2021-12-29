@@ -242,6 +242,23 @@ section * {
 		width: 100%;
 	}
 
+    .board * {
+        font-size: 5vw;
+    }
+
+    .user-board {
+        height: 80%;
+        width: 95%;
+    }
+
+    .user-board section {
+        height: 100%;
+        width: 100%;
+    }
+    .user-board * {
+        height: 7vw;
+        font-size: 5vw;
+    }
 	.top {
 		background: linear-gradient(
 			to top left,
