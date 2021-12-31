@@ -59,7 +59,7 @@ body {
 }
 
 .board * {
-	border-radius: 0.7vw;
+	border-radius: 0.5vw;
 	font-size: 2vw;
 	direction: ltr;
 	user-select: none;

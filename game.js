@@ -1,44 +1,74 @@
 let alerter = document.getElementById("alert");
 
+function make_board(fen) {
+	let c_board = ["init"];
+	let fenIn = fen.split("");
+	let p;
+	for (i in fenIn) {
+		p = fenIn[i];
+		if (p === "/" || p === "init") {
+			continue;
+		} else {
+			if ("123456789".includes(p)) {
+				for (let j = 0; j < parseInt(p); j++) {
+					c_board.push("   ");
+				}
+			} else {
+				c_board.push(fen_pieces[p]);
+			}
+		}
+	}
+	return c_board;
+}
+
+function check_win(board) {
+	let won = false;
+	if (
+		!board.includes(" w♔") &&
+		!board.includes(" W♔") &&
+		!board.includes("*w♔") &&
+		!board.includes("*W♔")
+	) {
+		alertCustom("black won by taking the king");
+		won = true;
+	} else if (
+		!board.includes(" b♔") &&
+		!board.includes(" B♔") &&
+		!board.includes("*b♔") &&
+		!board.includes("*b♔")
+	) {
+		alertCustom("white won by taking the king");
+		won = true;
+	}
+	return won;
+}
+
 function display(board) {
 	for (let i = 1; i < 65; i++) {
 		document.getElementById(`B${i}`).innerText = board[i];
 	}
 }
 
+board = make_board(games["start"]);
+
 let PlayerTurn = "w";
 let moves = [];
 let counter = 1;
-function clear_board(board = board) {
-	for (piece in board) {
+function clear_board(board) {
+	for (i in board) {
+		piece = board[i];
 		if (piece === "init") {
 			continue;
 		}
-		i = board.indexOf(piece) + 1;
-		if (board[i].includes("*")) {
+		if (board[i] === "***") {
+			board[i] = "   ";
+		}
+		if (board[i].split("").includes("*")) {
 			board[i] = board[i].replace("*", " ");
-		}
-		if (board[i].includes("***")) {
-			board[i] = board[i].replace("***", "   ");
-		}
-		if (
-			piece[1] === "P" &&
-			piece[0] in ["w", "W"] &&
-			i in [64, 63, 62, 61, 60, 59, 58, 57]
-		) {
-			board[i] = "*wQ";
-		}
-		if (
-			piece[1] === "P" &&
-			piece[0] in ["b", "B"] &&
-			i in [1, 2, 3, 4, 5, 6, 7, 8, 9]
-		) {
-			board[i] = "*bQ";
 		}
 	}
 }
-function make_move(position_old, position_new, p, board, debth = 3) {
-	clear_board(board);
+function make_move(position_old, position_new, p, board) {
 	let piece = board[movements[position_old]];
 	let start_old = piece[1];
 	let start_new = board[movements[position_new]][1];
@@ -55,6 +85,8 @@ function make_move(position_old, position_new, p, board, debth = 3) {
 			alert("صمم الموقع: عبدالرحمن عزمي");
 			counter = -10;
 		}
+		display(board);
+		clear_board(board);
 		switchPlayer(p);
 	} else if (piece in ["   ", "***"]) {
 		alertCustom(`square ${position_old} is empty`);
@@ -67,7 +99,6 @@ function make_move(position_old, position_new, p, board, debth = 3) {
 			}] you can't attack your piece`
 		);
 	}
-	display(board);
 }
 display(board);
 
