@@ -1,4 +1,105 @@
+//! REMEMBER to remove the old way of moving
+//! i mean the user board
+
 let alerter = document.getElementById("alert");
+let board;
+let PlayerTurn = "w";
+let moves = [];
+
+let boardEl = document.getElementById("board");
+let settingsButton = document.querySelector(".settings");
+let settingsArea = document.querySelector(".settings-pop");
+let closeSettings = document.querySelector(".close");
+settingsButton.addEventListener("click", () => {
+	settingsArea.style.transform = "translateX(0)";
+	settingsArea.style.width = "30%";
+});
+
+function closeSettingsButtons() {
+	settingsArea.style.transform = "translateX(20vw)";
+	settingsArea.style.width = "15vw";
+}
+
+closeSettings.addEventListener("click", closeSettingsButtons());
+
+// function getFEN() {
+// 	alertCustom("fen copied to clipboard");
+// 	navigator.clipboard.writeText(board_to_fen(board));
+// }
+
+let piecee;
+function remixBoard(board) {
+	let newBoard = [];
+	for (i in board) {
+		piecee = board[i];
+		if (piecee === "init") {
+			continue;
+		}
+		newBoard.push(pieceNotation[piecee]);
+	}
+	return newBoard;
+}
+
+function getFEN2(boardRemixed) {
+	let ret;
+	let cnt = 0; // counter for successive empty cell along the row
+	let save = []; // temp container
+
+	for (a in boardRemixed) {
+		index = parseInt(a)
+		v = boardRemixed[index];
+		if (v === " ") {
+			cnt += 1;
+			// sum up the successive empty cell and update save
+			if (cnt > 1) {
+				save[save.length - 1] = cnt.toString();
+			} else if (cnt < 1) {
+				save.push(cnt.toString()); // add
+			}
+		} else if (v !== " ") {
+			save.push(v); // add
+			cnt = 0; // reset, there is no successive number
+		}
+		
+		
+		if ((index + 1) % 8 === 0) {
+			save.push("/");
+			
+			cnt = 0;
+		}
+	}
+	ret = save.join(""); // convert list to string
+	return ret
+}
+function getFEN(boardRemixed) {
+	let empty = 0;
+	let counter = 0;
+	let fen = "";
+	let i;
+	for (p in boardRemixed) {
+		i = boardRemixed[p];
+		if (i === " ") {
+			empty += 1;
+		} else {
+			if (empty > 0) {
+				fen += empty.toString();
+				fen += i;
+				empty = 0;
+			} else {
+				fen += i;
+			}
+		}
+		counter += 1;
+		if (counter === 8) {
+			fen += "/";
+			counter = 1;
+		}
+	}
+
+	alertCustom("fen copied to clipboard");
+	navigator.clipboard.writeText(fen);
+	return fen;
+}
 
 function make_board(fen) {
 	let c_board = ["init"];
@@ -21,74 +122,50 @@ function make_board(fen) {
 	return c_board;
 }
 
-function check_win(board) {
-	let won = false;
-	if (
-		!board.includes(" w♔") &&
-		!board.includes(" W♔") &&
-		!board.includes("*w♔") &&
-		!board.includes("*W♔")
-	) {
-		alertCustom("black won by taking the king");
-		won = true;
-	} else if (
-		!board.includes(" b♔") &&
-		!board.includes(" B♔") &&
-		!board.includes("*b♔") &&
-		!board.includes("*b♔")
-	) {
-		alertCustom("white won by taking the king");
-		won = true;
-	}
-	return won;
-}
+// function check_win(board) {
+// 	let won = false;
+// 	if (!board.includes("w♔") && !board.includes(" W♔")) {
+// 		alertCustom("black won by taking the king");
+// 		won = true;
+// 	} else if (!board.includes("b♔") && !board.includes(" B♔")) {
+// 		alertCustom("white won by taking the king");
+// 		won = true;
+// 	}
+// 	return won;
+// }
 
-function display(board) {
-	for (let i = 1; i < 65; i++) {
-		document.getElementById(`B${i}`).innerText = board[i];
-	}
-}
-
-board = make_board(games["start"]);
-
-let PlayerTurn = "w";
-let moves = [];
-let counter = 1;
-function clear_board(board) {
+function displayPices(board) {
+	let square;
+	let render;
 	for (i in board) {
-		piece = board[i];
-		if (piece === "init") {
+		square = board[i];
+		render = document.getElementById(`B${i}`);
+		if (square === "init") {
 			continue;
-		}
-		if (board[i] === "***") {
-			board[i] = "   ";
-		}
-		if (board[i].split("").includes("*")) {
-			board[i] = board[i].replace("*", " ");
+		} else if (square === "   ") {
+			render.innerText = "   ";
+		} else {
+			square = square.toLowerCase();
+			render.innerText = "";
+			render.innerHTML = pieceSVG[pieceNotation[square]];
 		}
 	}
 }
+
 function make_move(position_old, position_new, p, board) {
 	let piece = board[movements[position_old]];
 	let start_old = piece[1];
 	let start_new = board[movements[position_new]][1];
-	if (piece !== "   " && piece !== "***" && start_old !== start_new) {
-		board[movements[position_old]] = "***";
+	if (piece !== "   " && start_old !== start_new) {
+		board[movements[position_old]] = "   ";
 		board[movements[position_new]] = piece
-			.replace(" ", "*")
 			.replace("B", "b")
 			.replace("W", "w");
-		counter++;
 		let move = `${piece[1]}${piece[2]}${position_new}`;
 		moves.push(move);
-		if (counter > 10) {
-			alert("صمم الموقع: عبدالرحمن عزمي");
-			counter = -10;
-		}
-		display(board);
-		clear_board(board);
+		displayPices(board);
 		switchPlayer(p);
-	} else if (piece in ["   ", "***"]) {
+	} else if (piece === "   ") {
 		alertCustom(`square ${position_old} is empty`);
 	} else if (start_old == start_new) {
 		alertCustom(
@@ -100,7 +177,6 @@ function make_move(position_old, position_new, p, board) {
 		);
 	}
 }
-display(board);
 
 function switchPlayer(current) {
 	const turn = document.querySelector("#player");
@@ -132,10 +208,7 @@ let oldClickedMove = "";
 let newClickedMove = "";
 function clickMove(move) {
 	if (oldClickedMove === "") {
-		if (
-			board[movements[move]] !== "   " &&
-			board[movements[move]] !== "***"
-		) {
+		if (board[movements[move]] !== "   ") {
 			let oldMMM = document.getElementById("old");
 			oldMMM.value = move;
 			oldClickedMove = move;
@@ -160,4 +233,17 @@ function alertCustom(message) {
 		alerter.style.zIndex = "10";
 		alerter.textContent = message;
 	}
+}
+board = make_board(games["start"]);
+displayPices(board);
+
+function newGame() {
+	board = make_board(games["start"]);
+	PlayerTurn = "w";
+	moves = [];
+	counter = 1;
+	oldClickedMove = "";
+	newClickedMove = "";
+	board = make_board(games["start"]);
+	displayPices(board);
 }

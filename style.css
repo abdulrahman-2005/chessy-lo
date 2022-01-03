@@ -22,27 +22,23 @@ body {
 }
 
 .right {
-	background: linear-gradient(
-		to top right,
-		black,
-		black,
-		black,
-		rgb(226, 7, 255),
-		black,
-		black
-	);
+	background: linear-gradient(to top right,
+			black,
+			black,
+			black,
+			rgb(226, 7, 255),
+			black,
+			black);
 }
 
 .left {
-	background: linear-gradient(
-		to top left,
-		black,
-		black,
-		black,
-		rgb(226, 7, 255),
-		black,
-		black
-	);
+	background: linear-gradient(to top left,
+			black,
+			black,
+			black,
+			rgb(226, 7, 255),
+			black,
+			black);
 }
 
 .board {
@@ -63,6 +59,11 @@ body {
 	font-size: 2vw;
 	direction: ltr;
 	user-select: none;
+}
+
+.board * svg {
+	height: 70%;
+	width: 70%;
 }
 
 .col {
@@ -256,28 +257,115 @@ section * {
 		height: 90%;
 		width: 100%;
 	}
+
 	.user-board * {
 		height: 7vw;
 		font-size: 5vw;
 	}
+
 	.top {
-		background: linear-gradient(
-			to top left,
-			black,
-			black,
-			rgb(226, 7, 255),
-			black,
-			black,
-			black
-		);
+		background: linear-gradient(to top left,
+				black,
+				black,
+				rgb(226, 7, 255),
+				black,
+				black,
+				black);
 	}
 
 	.bottom {
 		position: absolute;
 		top: 60%;
 	}
+
 	.user-board {
 		position: relative;
 		top: 0;
 	}
 }
+
+.settings {
+	position: absolute;
+	top: 62%;
+	right: 0.5%;
+	height: 7vw;
+	width: 7vw;
+	font-size: 4vw;
+	color: rgba(31, 0, 70);
+	background-color: rgba(238, 238, 238, 0.267);
+	transition: 1s;
+}
+
+.settings-pop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 15vw;
+	border-top-left-radius: 3vw;
+	border-bottom-left-radius: 3vw;
+	background-color: black;
+	box-shadow: 0 0 10px 30px rgb(166, 0, 255);
+	z-index: 1;
+	transform: translateX(20vw);
+	transition: 1s;
+}
+
+.settings:hover {
+	background-color: transparent;
+	transform: rotate(90deg);
+	color: black;
+}
+
+button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	outline: none;
+	border: 1px solid transparent;
+	border-radius: 1vw;
+	cursor: pointer;
+}
+
+.close {
+	position: relative;
+	font-size: 3vw;
+	top: 1vw;
+	right: 1vw;
+	height: 3vw;
+	width: 3vw;
+	background-color: rgb(115, 0, 255);
+	color: rgb(0, 0, 0);
+	transition: 1s;
+}
+
+.close:hover {
+	color: white;
+	font-weight: bold;
+}
+
+.option {
+	width: 80%;
+	height: 10%;
+	font-size: 3vw;
+	background-color: rgb(115, 0, 255);
+	color: rgb(0, 0, 0);
+	margin-top: 3vw;
+	margin-right: 10%;
+	transition: .4s;
+}
+
+.option:hover {
+	font-size: bold;
+	color: white;
+	transform: translateX(5%);
+	box-shadow: 10px 10px rgb(87, 0, 194);
+}
+
+/* 
+#board {
+	transform: rotate(180deg);
+}
+#board .white-b, #board .black-b {
+	transform: rotate(180deg)
+} */

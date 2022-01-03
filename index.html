@@ -8,11 +8,27 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
+		
 		<h1 class="status" id="alert" onclick="alertCustom('remove')">
 			Empty square
 		</h1>
+		<div class="settings-pop">
+			<button class="close">X</button>
+			<button class="option" onclick="newGame() & closeSettingsButtons()">
+				New Game
+			</button>
+			<button class="option" onclick="alertCustom('You Lost By Resignation') & newGame() & closeSettingsButtons()">
+				Resign
+			</button>
+			<button class="option" onclick="alertCustom('you sucks, draw again') & newGame() & closeSettingsButtons()">
+				Draw
+			</button>
+			<button class="option" onclick="getFEN() & newGame() & closeSettingsButtons()">
+				Get FEN
+			</button>
+		</div>
 		<div class="Area left top">
-			<div class="board">
+			<div class="board" id="board">
 				<div class="col">
 					<div
 						onclick="clickMove('h8')"
@@ -377,6 +393,8 @@
 				</section>
 			</div>
 		</div>
+		<button class="settings">⚙️</button>
+		<script src="pieces.js"></script>
 		<script src="assets.js"></script>
 		<script src="game.js"></script>
 	</body>
