@@ -22,40 +22,28 @@ body {
 }
 
 .right {
-	background: linear-gradient(to top right,
-			black,
-			black,
-			black,
-			rgb(226, 7, 255),
-			black,
-			black);
+	background: linear-gradient(to top right, black, black, black, #e207ff, black, black);
 }
 
 .left {
-	background: linear-gradient(to top left,
-			black,
-			black,
-			black,
-			rgb(226, 7, 255),
-			black,
-			black);
+	background: linear-gradient(to top left, black, black, black, #e207ff, black, black);
 }
 
 .board {
 	display: flex;
 	outline: none;
-	border: 5px solid rgb(0, 0, 0);
+	border: 5px solid #000;
 	border-radius: 1vw;
 	flex-wrap: wrap;
 	height: 40vw;
 	width: 40vw;
-	background-color: rgb(0, 0, 0);
-	box-shadow: 0 0 5px 5px rgb(87, 0, 194);
+	background-color: #000;
+	box-shadow: 0 0 5px 5px #5700c2;
 	transition: 1s;
 }
 
 .board * {
-	border-radius: 0.5vw;
+	border-radius: .5vw;
 	font-size: 2vw;
 	direction: ltr;
 	user-select: none;
@@ -78,12 +66,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	color: black;
+	color: #000;
 	top: 0;
 	height: 12.5%;
 	width: 100%;
-	background-color: rgb(255, 255, 255);
-	transition: 0.3s;
+	background-color: #fff;
+	transition: .3s;
 }
 
 .black-b {
@@ -92,16 +80,16 @@ body {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	color: white;
+	color: #fff;
 	top: 0;
 	height: 12.5%;
 	width: 100%;
-	background-color: brown;
-	transition: 0.3s;
+	background-color: #a52a2a;
+	transition: .3s;
 }
 
 .board:hover {
-	box-shadow: 0px 0px 10px 10px rgb(115, 0, 255);
+	box-shadow: 0 0 10px 10px #7300ff;
 	background-color: transparent;
 	border-color: transparent;
 }
@@ -119,34 +107,59 @@ body {
 }
 
 .black-b:hover {
-	background: brown !important;
+	background: #a52a2a !important;
 }
 
 .white-b:hover {
-	background: white !important;
+	background: #fff !important;
 }
 
 .user-board {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+	direction: ltr;
 	height: 40vw;
 	width: 40vw;
-	background-color: rgb(14, 0, 31);
+	background-color: #0e001f;
 	border-radius: 15px;
-	box-shadow: 0px 0px 10px 10px rgb(31, 0, 70);
+	box-shadow: 0 0 10px 10px #1f0046;
 	transition: 1s;
 }
 
 .user-board:hover {
-	box-shadow: 0px 0px 10px 10px rgb(166, 0, 255);
+	box-shadow: 0 0 10px 10px #a600ff;
+}
+
+.moves {
+	border-radius: 15px;
+	width: 50%;
+	height: 100%;
+	background-color: transparent;
+}
+
+.moves p {
+	width: fit-content;
+	padding: 2%;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-left: 35%;
+	font-size: 1.6vw;
+}
+
+.white-moves p {
+	border-radius: 2vw solid #000;
+	background-color: #000;
+	color: #fff;
+}
+
+.black-moves p {
+	border-radius: 2vw solid #fff;
+	background-color: #fff;
+	color: #000;
 }
 
 h1 {
-	color: white;
-	font-weight: bold;
+	color: #fff;
+	font-weight: 700;
 	font-size: 3vw;
 	background-color: rgba(255, 0, 0, 0.438);
 	border-radius: 3vw;
@@ -163,7 +176,7 @@ section {
 	position: relative;
 	top: 0;
 	direction: ltr;
-	color: rgb(174, 0, 255);
+	color: #ae00ff;
 }
 
 section * {
@@ -174,41 +187,41 @@ section * {
 	height: 3vw;
 	width: 25%;
 	border: 1px solid transparent;
-	background-color: rgb(192, 0, 240);
+	background-color: #c000f0;
 	font-size: 2vw;
 	text-align: center;
 	border-radius: 4vw;
 }
 
 .mkMove:hover {
-	box-shadow: 0 0 5px 5px black;
+	box-shadow: 0 0 5px 5px #000;
 }
 
 .move {
 	height: 3vw;
-	color: black;
+	color: #000;
 	width: 20%;
 	font-size: 120%;
 	text-align: center;
 	border-radius: 1vw;
 	outline: none;
-	border: 1px solid black;
+	border: 1px solid #000;
 	margin-left: 1vw;
-	box-shadow: 2px 2px black;
+	box-shadow: 2px 2px #000;
 }
 
 .move:focus {
-	background-color: rgb(99, 17, 167);
+	background-color: #6311a7;
 }
 
 #white {
 	background-color: #fff;
-	color: black;
+	color: #000;
 }
 
 #black {
-	background-color: black;
-	color: white;
+	background-color: #000;
+	color: #fff;
 }
 
 .status {
@@ -223,9 +236,9 @@ section * {
 	height: 10vw;
 	width: 30%;
 	border-radius: 1vw;
-	box-shadow: 0 0 2px 2px rgb(22, 3, 58);
+	box-shadow: 0 0 2px 2px #16033a;
 	text-align: center;
-	background: rgb(57, 0, 90);
+	background: #39005a;
 	color: red;
 }
 
@@ -240,8 +253,8 @@ section * {
 	}
 
 	.board {
-		height: 100%;
-		width: 100%;
+		height: 70vw;
+		width: 70vw;
 	}
 
 	.board * {
@@ -264,13 +277,7 @@ section * {
 	}
 
 	.top {
-		background: linear-gradient(to top left,
-				black,
-				black,
-				rgb(226, 7, 255),
-				black,
-				black,
-				black);
+		background: linear-gradient(to top left, black, black, #e207ff, black, black, black);
 	}
 
 	.bottom {
@@ -287,7 +294,7 @@ section * {
 .settings {
 	position: absolute;
 	top: 62%;
-	right: 0.5%;
+	right: .5%;
 	height: 7vw;
 	width: 7vw;
 	font-size: 4vw;
@@ -304,8 +311,8 @@ section * {
 	width: 15vw;
 	border-top-left-radius: 3vw;
 	border-bottom-left-radius: 3vw;
-	background-color: black;
-	box-shadow: 0 0 10px 30px rgb(166, 0, 255);
+	background-color: #000;
+	box-shadow: 0 0 10px 30px #a600ff;
 	z-index: 1;
 	transform: translateX(20vw);
 	transition: 1s;
@@ -314,7 +321,7 @@ section * {
 .settings:hover {
 	background-color: transparent;
 	transform: rotate(90deg);
-	color: black;
+	color: #000;
 }
 
 button {
@@ -334,22 +341,22 @@ button {
 	right: 1vw;
 	height: 3vw;
 	width: 3vw;
-	background-color: rgb(115, 0, 255);
-	color: rgb(0, 0, 0);
+	background-color: #7300ff;
+	color: #000;
 	transition: 1s;
 }
 
 .close:hover {
-	color: white;
-	font-weight: bold;
+	color: #fff;
+	font-weight: 700;
 }
 
 .option {
 	width: 80%;
 	height: 10%;
 	font-size: 3vw;
-	background-color: rgb(115, 0, 255);
-	color: rgb(0, 0, 0);
+	background-color: #7300ff;
+	color: #000;
 	margin-top: 3vw;
 	margin-right: 10%;
 	transition: .4s;
@@ -357,15 +364,7 @@ button {
 
 .option:hover {
 	font-size: bold;
-	color: white;
+	color: #fff;
 	transform: translateX(5%);
-	box-shadow: 10px 10px rgb(87, 0, 194);
+	box-shadow: 10px 10px #5700c2;
 }
-
-/* 
-#board {
-	transform: rotate(180deg);
-}
-#board .white-b, #board .black-b {
-	transform: rotate(180deg)
-} */

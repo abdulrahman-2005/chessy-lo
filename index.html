@@ -13,17 +13,17 @@
 			Empty square
 		</h1>
 		<div class="settings-pop">
-			<button class="close">X</button>
+			<button class="close" onclick="closeSettingsButtons()">X</button>
 			<button class="option" onclick="newGame() & closeSettingsButtons()">
 				New Game
 			</button>
-			<button class="option" onclick="alertCustom('You Lost By Resignation') & newGame() & closeSettingsButtons()">
-				Resign
+			<button class="option" onclick="create() & closeSettingsButtons()">
+				Create
 			</button>
 			<button class="option" onclick="alertCustom('you sucks, draw again') & newGame() & closeSettingsButtons()">
 				Draw
 			</button>
-			<button class="option" onclick="getFEN() & newGame() & closeSettingsButtons()">
+			<button class="option" onclick="getFEN(board) & closeSettingsButtons()">
 				Get FEN
 			</button>
 		</div>
@@ -31,336 +31,336 @@
 			<div class="board" id="board">
 				<div class="col">
 					<div
-						onclick="clickMove('h8')"
+						onclick="clickMove('h8', 'B57')"
 						class="white-b"
 						id="B57"
 					></div>
 					<div
-						onclick="clickMove('h7')"
+						onclick="clickMove('h7', 'B49')"
 						class="black-b"
 						id="B49"
 					></div>
 					<div
-						onclick="clickMove('h6')"
+						onclick="clickMove('h6', 'B41')"
 						class="white-b"
 						id="B41"
 					></div>
 					<div
-						onclick="clickMove('h5')"
+						onclick="clickMove('h5', 'B33')"
 						class="black-b"
 						id="B33"
 					></div>
 					<div
-						onclick="clickMove('h4')"
+						onclick="clickMove('h4', 'B25')"
 						class="white-b"
 						id="B25"
 					></div>
 					<div
-						onclick="clickMove('h3')"
+						onclick="clickMove('h3', 'B17')"
 						class="black-b"
 						id="B17"
 					></div>
 					<div
-						onclick="clickMove('h2')"
+						onclick="clickMove('h2', 'B9')"
 						class="white-b"
 						id="B9"
 					></div>
 					<div
-						onclick="clickMove('h1')"
+						onclick="clickMove('h1', 'B1')"
 						class="black-b"
 						id="B1"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('g8')"
+						onclick="clickMove('g8', 'B58')"
 						class="black-b"
 						id="B58"
 					></div>
 					<div
-						onclick="clickMove('g7')"
+						onclick="clickMove('g7', 'B50')"
 						class="white-b"
 						id="B50"
 					></div>
 					<div
-						onclick="clickMove('g6')"
+						onclick="clickMove('g6', 'B42')"
 						class="black-b"
 						id="B42"
 					></div>
 					<div
-						onclick="clickMove('g5')"
+						onclick="clickMove('g5', 'B34')"
 						class="white-b"
 						id="B34"
 					></div>
 					<div
-						onclick="clickMove('g4')"
+						onclick="clickMove('g4', 'B26')"
 						class="black-b"
 						id="B26"
 					></div>
 					<div
-						onclick="clickMove('g3')"
+						onclick="clickMove('g3', 'B18')"
 						class="white-b"
 						id="B18"
 					></div>
 					<div
-						onclick="clickMove('g2')"
+						onclick="clickMove('g2', 'B10')"
 						class="black-b"
 						id="B10"
 					></div>
 					<div
-						onclick="clickMove('g1')"
+						onclick="clickMove('g1', 'B2')"
 						class="white-b"
 						id="B2"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('f8')"
+						onclick="clickMove('f8', 'B59')"
 						class="white-b"
 						id="B59"
 					></div>
 					<div
-						onclick="clickMove('f7')"
+						onclick="clickMove('f7', 'B51')"
 						class="black-b"
 						id="B51"
 					></div>
 					<div
-						onclick="clickMove('f6')"
+						onclick="clickMove('f6', 'B43')"
 						class="white-b"
 						id="B43"
 					></div>
 					<div
-						onclick="clickMove('f5')"
+						onclick="clickMove('f5', 'B35')"
 						class="black-b"
 						id="B35"
 					></div>
 					<div
-						onclick="clickMove('f4')"
+						onclick="clickMove('f4', 'B27')"
 						class="white-b"
 						id="B27"
 					></div>
 					<div
-						onclick="clickMove('f3')"
+						onclick="clickMove('f3', 'B19')"
 						class="black-b"
 						id="B19"
 					></div>
 					<div
-						onclick="clickMove('f2')"
+						onclick="clickMove('f2', 'B11')"
 						class="white-b"
 						id="B11"
 					></div>
 					<div
-						onclick="clickMove('f1')"
+						onclick="clickMove('f1', 'B3')"
 						class="black-b"
 						id="B3"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('e8')"
+						onclick="clickMove('e8', 'B60')"
 						class="black-b"
 						id="B60"
 					></div>
 					<div
-						onclick="clickMove('e7')"
+						onclick="clickMove('e7', 'B52')"
 						class="white-b"
 						id="B52"
 					></div>
 					<div
-						onclick="clickMove('e6')"
+						onclick="clickMove('e6', 'B44')"
 						class="black-b"
 						id="B44"
 					></div>
 					<div
-						onclick="clickMove('e5')"
+						onclick="clickMove('e5', 'B36')"
 						class="white-b"
 						id="B36"
 					></div>
 					<div
-						onclick="clickMove('e4')"
+						onclick="clickMove('e4', 'B28')"
 						class="black-b"
 						id="B28"
 					></div>
 					<div
-						onclick="clickMove('e3')"
+						onclick="clickMove('e3', 'B20')"
 						class="white-b"
 						id="B20"
 					></div>
 					<div
-						onclick="clickMove('e2')"
+						onclick="clickMove('e2', 'B12')"
 						class="black-b"
 						id="B12"
 					></div>
 					<div
-						onclick="clickMove('e1')"
+						onclick="clickMove('e1', 'B4')"
 						class="white-b"
 						id="B4"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('d8')"
+						onclick="clickMove('d8', 'B61')"
 						class="white-b"
 						id="B61"
 					></div>
 					<div
-						onclick="clickMove('d7')"
+						onclick="clickMove('d7', 'B53')"
 						class="black-b"
 						id="B53"
 					></div>
 					<div
-						onclick="clickMove('d6')"
+						onclick="clickMove('d6', 'B45')"
 						class="white-b"
 						id="B45"
 					></div>
 					<div
-						onclick="clickMove('d5')"
+						onclick="clickMove('d5', 'B37')"
 						class="black-b"
 						id="B37"
 					></div>
 					<div
-						onclick="clickMove('d4')"
+						onclick="clickMove('d4', 'B29')"
 						class="white-b"
 						id="B29"
 					></div>
 					<div
-						onclick="clickMove('d3')"
+						onclick="clickMove('d3', 'B21')"
 						class="black-b"
 						id="B21"
 					></div>
 					<div
-						onclick="clickMove('d2')"
+						onclick="clickMove('d2', 'B13')"
 						class="white-b"
 						id="B13"
 					></div>
 					<div
-						onclick="clickMove('d1')"
+						onclick="clickMove('d1', 'B5')"
 						class="black-b"
 						id="B5"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('c8')"
+						onclick="clickMove('c8', 'B62')"
 						class="black-b"
 						id="B62"
 					></div>
 					<div
-						onclick="clickMove('c7')"
+						onclick="clickMove('c7', 'B54')"
 						class="white-b"
 						id="B54"
 					></div>
 					<div
-						onclick="clickMove('c6')"
+						onclick="clickMove('c6', 'B46')"
 						class="black-b"
 						id="B46"
 					></div>
 					<div
-						onclick="clickMove('c5')"
+						onclick="clickMove('c5', 'B38')"
 						class="white-b"
 						id="B38"
 					></div>
 					<div
-						onclick="clickMove('c4')"
+						onclick="clickMove('c4', 'B30')"
 						class="black-b"
 						id="B30"
 					></div>
 					<div
-						onclick="clickMove('c3')"
+						onclick="clickMove('c3', 'B22')"
 						class="white-b"
 						id="B22"
 					></div>
 					<div
-						onclick="clickMove('c2')"
+						onclick="clickMove('c2', 'B14')"
 						class="black-b"
 						id="B14"
 					></div>
 					<div
-						onclick="clickMove('c1')"
+						onclick="clickMove('c1', 'B6')"
 						class="white-b"
 						id="B6"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('b8')"
+						onclick="clickMove('b8', 'B63')"
 						class="white-b"
 						id="B63"
 					></div>
 					<div
-						onclick="clickMove('b7')"
+						onclick="clickMove('b7', 'B55')"
 						class="black-b"
 						id="B55"
 					></div>
 					<div
-						onclick="clickMove('b6')"
+						onclick="clickMove('b6', 'B47')"
 						class="white-b"
 						id="B47"
 					></div>
 					<div
-						onclick="clickMove('b5')"
+						onclick="clickMove('b5', 'B39')"
 						class="black-b"
 						id="B39"
 					></div>
 					<div
-						onclick="clickMove('b4')"
+						onclick="clickMove('b4', 'B31')"
 						class="white-b"
 						id="B31"
 					></div>
 					<div
-						onclick="clickMove('b3')"
+						onclick="clickMove('b3', 'B23')"
 						class="black-b"
 						id="B23"
 					></div>
 					<div
-						onclick="clickMove('b2')"
+						onclick="clickMove('b2', 'B15')"
 						class="white-b"
 						id="B15"
 					></div>
 					<div
-						onclick="clickMove('b1')"
+						onclick="clickMove('b1', 'B7')"
 						class="black-b"
 						id="B7"
 					></div>
 				</div>
 				<div class="col">
 					<div
-						onclick="clickMove('a8')"
+						onclick="clickMove('a8', 'B64')"
 						class="black-b"
 						id="B64"
 					></div>
 					<div
-						onclick="clickMove('a7')"
+						onclick="clickMove('a7', 'B56')"
 						class="white-b"
 						id="B56"
 					></div>
 					<div
-						onclick="clickMove('a6')"
+						onclick="clickMove('a6', 'B48')"
 						class="black-b"
 						id="B48"
 					></div>
 					<div
-						onclick="clickMove('a5')"
+						onclick="clickMove('a5', 'B40')"
 						class="white-b"
 						id="B40"
 					></div>
 					<div
-						onclick="clickMove('a4')"
+						onclick="clickMove('a4', 'B32')"
 						class="black-b"
 						id="B32"
 					></div>
 					<div
-						onclick="clickMove('a3')"
+						onclick="clickMove('a3', 'B24')"
 						class="white-b"
 						id="B24"
 					></div>
 					<div
-						onclick="clickMove('a2')"
+						onclick="clickMove('a2', 'B16')"
 						class="black-b"
 						id="B16"
 					></div>
 					<div
-						onclick="clickMove('a1')"
+						onclick="clickMove('a1', 'B8')"
 						class="white-b"
 						id="B8"
 					></div>
@@ -369,33 +369,26 @@
 		</div>
 		<div class="Area right bottom" style="right: 0">
 			<div class="user-board">
-				<section class="white" id="player">
-					<h1 id="white">White's Move</h1>
-					<h2>
-						old
-						<input
-							type="text"
-							class="move"
-							id="old"
-							placeholder="a2"
-						/>
-					</h2>
-					<h2>
-						new
-						<input
-							type="text"
-							class="move"
-							id="new"
-							placeholder="a4"
-						/>
-					</h2>
-					<button class="mkMove" onclick="MkMove('w')">Move</button>
-				</section>
+				<div class="moves black-moves">
+					<p>dfs</p>
+					<p>dfs</p>
+					<p>dfs</p>
+					<p>dfs</p>
+					<p>dfs</p>
+				</div>
+				<div class="moves white-moves">
+					<p>dfs</p>
+					<p>dfs</p>
+					<p>dfs</p>
+					<p>dfs</p>
+					<p>dfs</p>
+				</div>
 			</div>
 		</div>
 		<button class="settings">⚙️</button>
-		<script src="pieces.js"></script>
-		<script src="assets.js"></script>
-		<script src="game.js"></script>
+		<script src="JS/pieces.js"></script>
+		<script src="JS/assets.js"></script>
+		<script src="JS/game.js"></script>
+		<script src="JS/app.js"></script>
 	</body>
 </html>
