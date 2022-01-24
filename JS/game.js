@@ -3,6 +3,13 @@ let board;
 let PlayerTurn = "w";
 let moves = [];
 
+function switchPlayer(currentPlayer) {
+	if (currentPlayer === "w") {
+		PlayerTurn = "b";
+	} else {
+		PlayerTurn = "w";
+	}
+}
 
 let piecee;
 function remixBoard(board) {
@@ -18,7 +25,7 @@ function remixBoard(board) {
 }
 
 function getFEN(board) {
-	board = remixBoard(board)
+	board = remixBoard(board);
 	let fen = "";
 	for (let rank = 7; 0 <= rank; rank--) {
 		let emptySquares = 0;
@@ -47,7 +54,7 @@ function getFEN(board) {
 function make_board(fen) {
 	let c_board = ["init"];
 	let p;
-	for (let i = 0; i<fen.length; i++) {
+	for (let i = 0; i < fen.length; i++) {
 		p = fen[i];
 		if (p === "/" || p === "init") {
 			continue;
@@ -93,22 +100,41 @@ function displayPices(board) {
 		}
 	}
 }
+let stackPlayer;
+let movesCounter = 1;
+function appendMove(move, player, option = "append") {
+	if (option === "append") {
+		if (player === "w") {
+			stackPlayer = document.getElementById("WMoves");
+			stackPlayer.innerHTML += `<p>${movesCounter + ".  " + move}</p>`;
+			movesCounter++;
+		} else {
+			stackPlayer = document.getElementById("BMoves");
+			stackPlayer.innerHTML += `<p>${move}</p>`;
+		}
+	} else {
+		document.getElementById("BMoves").innerHTML = "<p>Black Moves</p>";
+		document.getElementById("WMoves").innerHTML = "<p>White Moves</p>";
+	}
+}
 
-function make_move(position_old, position_new, p, board) {
-	let piece = board[movements[position_old]];
+function make_move(positionOld, positionNew, player, board) {
+	let piece = board[movements[positionOld]];
+	console.log(piece);
 	let start_old = piece[1];
-	let start_new = board[movements[position_new]][0];
+	let start_new = board[movements[positionNew]][0];
 	if (piece !== "   " && start_old !== start_new) {
-		board[movements[position_old]] = "   ";
-		board[movements[position_new]] = piece
+		board[movements[positionOld]] = "   ";
+		board[movements[positionNew]] = piece
 			.replace("B", "b")
 			.replace("W", "w");
-		let move = `${piece[1]}${piece[2]}${position_new}`;
+		let move = `${piece[0]}${piece[1]}${positionNew}`;
 		moves.push(move);
+		appendMove(move, player);
+		switchPlayer(player);
 		displayPices(board);
-		//switchPlayer(p);
 	} else if (piece === "   ") {
-		alertCustom(`square ${position_old} is empty`);
+		alertCustom(`square ${positionOld} is empty`);
 	} else if (start_old == start_new) {
 		alertCustom(
 			`[${
@@ -119,26 +145,6 @@ function make_move(position_old, position_new, p, board) {
 		);
 	}
 }
-
-// function switchPlayer(current) {
-// 	const turn = document.querySelector("#player");
-// 	if (current === "w") {
-// 		turn.innerHTML = `
-//         <h1 id="black">Black's Move</h1>
-//         <h2>old <input type="text" class="move" id="old" placeholder="a7"/></h2>
-//         <h2>new <input type="text" class="move" id="new" placeholder="a6"/></h2>
-//         <button class="mkMove" onclick="MkMove('b')">Move</button>`;
-// 		PlayerTurn = "b";
-// 	} else {
-// 		turn.innerHTML = `
-//         <h1 id="white">White's Move</h1>
-//         <h2>old <input type="text" class="move" id="old" placeholder="a2"/></h2>
-//         <h2>new <input type="text" class="move" id="new" placeholder="a4"/></h2>
-//         <button class="mkMove" onclick="MkMove('w')">Move</button>`;
-// 		PlayerTurn = "w";
-// 	}
-// }
-
 let oldClickedMove = "";
 let newClickedMove = "";
 function clickMove(move, position) {
@@ -168,7 +174,9 @@ function alertCustom(message) {
 
 function newGame() {
 	board = make_board(games["start"]);
+	appendMove(false, false, "clear");
 	PlayerTurn = "w";
+	movesCounter = 1;
 	moves = [];
 	counter = 1;
 	oldClickedMove = "";
@@ -176,3 +184,5 @@ function newGame() {
 	board = make_board(games["start"]);
 	displayPices(board);
 }
+
+newGame();

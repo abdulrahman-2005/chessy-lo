@@ -22,11 +22,27 @@ body {
 }
 
 .right {
-	background: linear-gradient(to top right, black, black, black, #e207ff, black, black);
+	background: linear-gradient(
+		to top right,
+		black,
+		black,
+		black,
+		#e207ff,
+		black,
+		black
+	);
 }
 
 .left {
-	background: linear-gradient(to top left, black, black, black, #e207ff, black, black);
+	background: linear-gradient(
+		to top left,
+		black,
+		black,
+		black,
+		#e207ff,
+		black,
+		black
+	);
 }
 
 .board {
@@ -43,7 +59,7 @@ body {
 }
 
 .board * {
-	border-radius: .5vw;
+	border-radius: 0.5vw;
 	font-size: 2vw;
 	direction: ltr;
 	user-select: none;
@@ -71,7 +87,7 @@ body {
 	height: 12.5%;
 	width: 100%;
 	background-color: #fff;
-	transition: .3s;
+	transition: 0.3s;
 }
 
 .black-b {
@@ -85,7 +101,7 @@ body {
 	height: 12.5%;
 	width: 100%;
 	background-color: #a52a2a;
-	transition: .3s;
+	transition: 0.3s;
 }
 
 .board:hover {
@@ -117,10 +133,13 @@ body {
 .user-board {
 	display: flex;
 	direction: ltr;
-	height: 40vw;
-	width: 40vw;
+	padding: 1vw;
+	height: 39vw;
+	width: 39vw;
 	background-color: #0e001f;
 	border-radius: 15px;
+	overflow: hidden;
+	overflow-y: scroll;
 	box-shadow: 0 0 10px 10px #1f0046;
 	transition: 1s;
 }
@@ -131,7 +150,8 @@ body {
 
 .moves {
 	border-radius: 15px;
-	width: 50%;
+	width: 49%;
+	margin-left: 2%;
 	height: 100%;
 	background-color: transparent;
 }
@@ -141,8 +161,22 @@ body {
 	padding: 2%;
 	padding-left: 5%;
 	padding-right: 5%;
-	margin-left: 35%;
 	font-size: 1.6vw;
+}
+
+.user-board::-webkit-scrollbar {
+	width: 1.5vw;
+}
+.user-board::-webkit-scrollbar-track {
+	border-radius: 5vw;
+	background-color: transparent;
+}
+.user-board::-webkit-scrollbar-thumb {
+	background-color: rgba(200, 85, 253, 0.171);
+	border-radius: 40vw;
+}
+.user-board::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(175, 14, 250, 0.171);
 }
 
 .white-moves p {
@@ -262,39 +296,30 @@ section * {
 	}
 
 	.user-board {
-		height: 80%;
-		width: 95%;
+		display: none;
 	}
-
-	.user-board section {
-		height: 90%;
-		width: 100%;
-	}
-
-	.user-board * {
-		height: 7vw;
-		font-size: 5vw;
-	}
-
 	.top {
-		background: linear-gradient(to top left, black, black, #e207ff, black, black, black);
+		height: 100%;
+		background: linear-gradient(
+			to top left,
+			black,
+			black,
+			#e207ff,
+			black,
+			black,
+			black
+		);
 	}
 
 	.bottom {
-		position: absolute;
-		top: 60%;
-	}
-
-	.user-board {
-		position: relative;
-		top: 0;
+		display: none;
 	}
 }
 
 .settings {
 	position: absolute;
 	top: 62%;
-	right: .5%;
+	right: 0.5%;
 	height: 7vw;
 	width: 7vw;
 	font-size: 4vw;
@@ -359,7 +384,7 @@ button {
 	color: #000;
 	margin-top: 3vw;
 	margin-right: 10%;
-	transition: .4s;
+	transition: 0.4s;
 }
 
 .option:hover {
